@@ -1,17 +1,17 @@
 {
-  "name": "@robot-identity-framework/sdk",
-  "version": "0.1.0-alpha.2",
-  "description": "Experimental transport-independent robot authentication reference SDK",
+  "name": "@robot-identity-protocol/sdk",
+  "version": "0.1.0-alpha.3",
+  "description": "Experimental Robot Identity Protocol reference SDK",
   "type": "module",
   "sideEffects": false,
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryo-stst/robot-identity-framework.git"
+    "url": "git+https://github.com/ryo-stst/robot-identity-protocol.git"
   },
-  "homepage": "https://github.com/ryo-stst/robot-identity-framework#readme",
+  "homepage": "https://github.com/ryo-stst/robot-identity-protocol#readme",
   "bugs": {
-    "url": "https://github.com/ryo-stst/robot-identity-framework/issues"
+    "url": "https://github.com/ryo-stst/robot-identity-protocol/issues"
   },
   "engines": {
     "node": ">=22"

@@ -1,4 +1,4 @@
-# Robot Identity Authentication Protocol v0.1
+# Robot Identity Protocol (RIP) — Authentication Core v0.1
 
 Status: **Experimental design draft**. This document is not an interoperability commitment, production security claim, certification, or recognized standard.
 
@@ -39,6 +39,8 @@ A successful report means that defined authentication evidence was verified. Ano
 ### 3.4 Endpoint and physical body are separate
 
 A valid cryptographic proof authenticates an endpoint. It does not by itself establish which visible robot body produced the radio signal. A physical-binding adapter may add ranging, direction, optical, or multi-modal evidence. Without such evidence, the result is `endpoint-only`.
+
+Physical binding is not mandatory RIP core behavior. An optional profile may consume the fresh RIP session context, add a signed response commitment, correlate it with a verifier-local sensor track, and return a separate profile report. See [`RIP Physical Binding Profile v0.1`](physical-binding-profile-v0.1.md).
 
 ## 4. One-way exchange
 
@@ -135,6 +137,18 @@ Domain owners define their own schema and semantics. The core carries provenance
 ```
 
 Inline content and a content reference are mutually exclusive.
+
+### 6.1 Optional profile composition
+
+Domain owners may define optional companion profiles without changing RIP core semantics. A profile should:
+
+- use a stable profile identifier and version;
+- bind requests and responses to the RIP session ID, verifier nonce, and validity window;
+- place Presenter commitments inside the signed presentation or reference them from it;
+- keep verifier-local observations, thresholds, and sensor identifiers outside portable identity;
+- return separate evidence and never modify authentication into authorization.
+
+Unsupported optional profiles may be ignored. A profile required for a particular deployment can be marked critical, in which case an implementation that does not support it must fail that session explicitly.
 
 ## 7. Alpha implementation profile
 

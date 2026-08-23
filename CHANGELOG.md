@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented here.
 
+## 0.1.0-alpha.3 - 2026-08-23
+
+- Rename the project and SDK to Robot Identity Protocol (RIP).
+- Add an experimental optional physical-binding profile and generic SDK helpers.
+- Add signed session-response and verifier-local observation tests.
+- Preserve endpoint authentication as RIP core; physical-body correlation remains separate evidence.
+
 ## 0.1.0-alpha.2 - 2026-08-08
 
 - Accept runtime JWK objects whose optional members are present with `undefined` values by omitting those members from the alpha JSON mapping.

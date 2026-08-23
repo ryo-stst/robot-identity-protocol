@@ -1,12 +1,12 @@
-# Robot Identity Framework
+# Robot Identity Protocol (RIP)
 
-Experimental, transport-independent authentication for robots and other Physical AI endpoints.
+Experimental, transport-independent authentication protocol for robots and other Physical AI endpoints.
 
 This public repository contains an open specification draft and a minimal TypeScript reference SDK. The SDK proves that the same authentication transcript can be carried by an in-memory link today and by BLE, local Wi-Fi, UWB-assisted, vehicle, or other bearer profiles later.
 
-**[Launch the interactive Field Lab →](https://robot-identity-field-lab.sato-kit111.chatgpt.site/)**
+**[Launch RIP Field Lab →](https://robot-identity-field-lab.sato-kit111.chatgpt.site/)**
 
-The public browser demo uses the released SDK to simulate three discovery candidates, an isolated authentication session, hostile scenarios, and the resulting payloads. Runs use temporary in-memory data and are not saved.
+The public browser demo uses the released RIP SDK to simulate three discovery candidates, an isolated authentication session, hostile scenarios, an optional physical-binding profile, and the resulting payloads. Runs use temporary in-memory data and are not saved.
 
 > **Alpha warning:** this project has not received an independent security review. It is not a production security claim, certification program, safety controller, or interoperability standard.
 
@@ -44,11 +44,13 @@ sequenceDiagram
 - `examples/`: a two-endpoint offline example;
 - `docs/licensing.md`: plain-language rights summary.
 
+The core protocol authenticates an endpoint. Optional profiles can add domain-specific evidence without making one sensor method mandatory. [`RIP Physical Binding Profile v0.1`](spec/physical-binding-profile-v0.1.md) demonstrates how a signed session response can be correlated with a verifier-local camera, ranging, direction, acoustic, or multi-modal observation.
+
 Multiple presenters may advertise at once. A verifier keeps them as separate untrusted candidates, selects one advertisement, and creates an isolated authentication session for that target. Authentication proves the selected communication endpoint; physical-body selection remains a separate binding problem.
 
 ## Try it in the browser
 
-Open the **[Robot Identity Field Lab](https://robot-identity-field-lab.sato-kit111.chatgpt.site/)**, select one of the three Presenter candidates, choose a success or attack scenario, and run the protocol. The lab separates standardized authentication data from optional domain-extension data and links each verifier-local candidate to its discovery handle, session, and presented peer key.
+Open **[RIP Field Lab](https://robot-identity-field-lab.sato-kit111.chatgpt.site/)**, select one of the three Presenter candidates, choose a success or attack scenario, optionally enable the simulated optical-binding profile, and run the protocol. The lab separates RIP core data from optional domain-extension data and links each verifier-local candidate to its discovery handle, session, presented peer key, and optional physical observation.
 
 The Field Lab is an educational alpha, not a hosted trust registry, certification service, safety controller, or production-security claim. Its web source remains separate from this Apache-2.0 repository; the protocol, SDK, examples, and tests in this repository remain the portable open-source core.
 
@@ -75,7 +77,7 @@ The current alpha uses JSON and Ed25519 to exercise the data model. Those choice
 | Arbitrary attribute envelope model | Model only; issuer proof verification pending |
 | Mutual authentication | Specification direction; implementation pending |
 | BLE, Wi-Fi, UWB, and vehicle adapters | Interfaces/profiles pending |
-| Physical-entity binding | Report vocabulary only |
+| Optional physical-binding profile helpers | Experimental; simulated optical example, no production sensor claim |
 
 ## License and rights
 
