@@ -6,6 +6,8 @@ This public repository contains an open specification draft and a minimal TypeSc
 
 **[Launch RIP Field Lab →](https://robot-identity-field-lab.sato-kit111.chatgpt.site/)**
 
+Read the design walkthrough: **[Which Robot Did I Authenticate? Simulating Physical Binding with RIP](docs/articles/which-robot-did-i-authenticate.md)**
+
 The public browser demo uses the released RIP SDK to simulate three discovery candidates, an isolated authentication session, hostile scenarios, an optional physical-binding profile, and the resulting payloads. Runs use temporary in-memory data and are not saved.
 
 > **Alpha warning:** this project has not received an independent security review. It is not a production security claim, certification program, safety controller, or interoperability standard.
