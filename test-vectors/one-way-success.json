@@ -1,0 +1,69 @@
+{
+  "vector": "rip-one-way-success-v0.1",
+  "description": "A fixed successful one-way endpoint-authentication exchange.",
+  "verificationTime": "2026-09-01T00:00:00.500Z",
+  "advertisement": {
+    "type": "discovery-advertisement",
+    "protocol": "org.robot-identity.authentication",
+    "version": "0.1",
+    "handle": "_mTByMSIySzQJGzKieNmjg",
+    "modes": [
+      "one-way"
+    ],
+    "profiles": [
+      "in-memory-1"
+    ],
+    "issuedAt": "2026-09-01T00:00:00.000Z",
+    "expiresAt": "2026-09-01T00:01:00.000Z"
+  },
+  "initiation": {
+    "type": "authentication-initiation",
+    "protocol": "org.robot-identity.authentication",
+    "version": "0.1",
+    "sessionId": "s_jKVH6Z1bdde5sE6FMkBg",
+    "verifierNonce": "qDMy6x-GrTqGFk3lz4qYld6-Mra8tscOv2oOLI9Bvqk",
+    "advertisementHash": "63GJtrGcQ7KcX40h1yVUucf6PwSZpnWv2ymgE_y2nnI",
+    "requestedSchemas": [],
+    "criticalExtensions": [],
+    "extensions": {},
+    "issuedAt": "2026-09-01T00:00:00.000Z",
+    "expiresAt": "2026-09-01T00:01:00.000Z"
+  },
+  "presentation": {
+    "type": "authentication-presentation",
+    "protocol": "org.robot-identity.authentication",
+    "version": "0.1",
+    "sessionId": "s_jKVH6Z1bdde5sE6FMkBg",
+    "verifierNonce": "qDMy6x-GrTqGFk3lz4qYld6-Mra8tscOv2oOLI9Bvqk",
+    "presenterNonce": "1n74MOrpqhU7nJljah7pkvfV51JdEVd0J5kp-EBjhDE",
+    "advertisementHash": "63GJtrGcQ7KcX40h1yVUucf6PwSZpnWv2ymgE_y2nnI",
+    "presenterKeyId": "urn:rip:key:sha256:5dc4WJiBmtQ1GkKFRboVXJ_3scw9lP7RHqN4cHXYiOM",
+    "presenterPublicKey": {
+      "crv": "Ed25519",
+      "x": "rfW4T30Yeomg0Srvsc1caCiCYWq7XxMkiJ4A8Jvy0js",
+      "kty": "OKP"
+    },
+    "attributes": [],
+    "criticalExtensions": [],
+    "extensions": {},
+    "issuedAt": "2026-09-01T00:00:00.000Z",
+    "expiresAt": "2026-09-01T00:01:00.000Z",
+    "proof": {
+      "algorithm": "Ed25519",
+      "transcriptHash": "6nvnt-GZwQgMyVTCrnr10e7YKmpdP1JlNbe-lPEAjuY",
+      "signature": "9idkL3ZTguck9o1cs6FIyp2HdZPYzWUyGtd6yc0S5REQ8yIZrgHdPDmuHTNRTvCEnNbmixFBtIG-U5A1cUlkBQ"
+    }
+  },
+  "trustedKeys": {
+    "urn:rip:key:sha256:5dc4WJiBmtQ1GkKFRboVXJ_3scw9lP7RHqN4cHXYiOM": {
+      "crv": "Ed25519",
+      "x": "rfW4T30Yeomg0Srvsc1caCiCYWq7XxMkiJ4A8Jvy0js",
+      "kty": "OKP"
+    }
+  },
+  "expected": {
+    "overall": "verified",
+    "peerKeyId": "urn:rip:key:sha256:5dc4WJiBmtQ1GkKFRboVXJ_3scw9lP7RHqN4cHXYiOM",
+    "transcriptHash": "6nvnt-GZwQgMyVTCrnr10e7YKmpdP1JlNbe-lPEAjuY"
+  }
+}

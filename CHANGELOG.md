@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented here.
 
+## 0.1.0-alpha.4 - 2026-09-01
+
+- Add a progressive 10-minute Quickstart that begins with one endpoint-authentication exchange.
+- Add optional multi-candidate physical-binding and domain-attribute examples.
+- Add a fixed successful JSON test vector and tampering coverage.
+- Add GitHub Discussions and a structured public use-case form.
+
 ## 0.1.0-alpha.3 - 2026-08-23
 
 - Rename the project and SDK to Robot Identity Protocol (RIP).

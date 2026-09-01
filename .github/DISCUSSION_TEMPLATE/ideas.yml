@@ -1,0 +1,46 @@
+title: "[Use case] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe one robot-to-robot or robot-to-infrastructure interaction. A short outline is enough; please do not include secrets or personal data.
+  - type: textarea
+    id: interaction
+    attributes:
+      label: Interaction
+      description: Who needs to authenticate whom, and at what moment?
+      placeholder: A mobile robot arrives near three loading stations and must authenticate one station before exchanging data.
+    validations:
+      required: true
+  - type: dropdown
+    id: physical_binding
+    attributes:
+      label: Physical selection or binding
+      description: How might the verifier distinguish the intended body from nearby candidates?
+      options:
+        - Not needed or not known yet
+        - Camera or optical signal
+        - Secure ranging or direction
+        - Acoustic signal
+        - Multiple sensor methods
+        - Another method described below
+    validations:
+      required: true
+  - type: textarea
+    id: attributes
+    attributes:
+      label: Domain attributes
+      description: Which business-specific facts, if any, should be carried separately from core identity?
+      placeholder: Payload limit, maintenance status, operating mode, or none.
+  - type: textarea
+    id: useful_result
+    attributes:
+      label: Useful result
+      description: What would make a RIP simulation or SDK example useful for this case?
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public information
+      options:
+        - label: I have not included secrets, credentials, personal data, or confidential operational details.
+          required: true

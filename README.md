@@ -6,6 +6,8 @@ This public repository contains an open specification draft and a minimal TypeSc
 
 **[Launch RIP Field Lab →](https://robot-identity-field-lab.sato-kit111.chatgpt.site/)**
 
+**[Run one authentication locally in about 10 minutes →](QUICKSTART.md)**
+
 Read the design walkthrough: **[Which Robot Did I Authenticate? Simulating Physical Binding with RIP](docs/articles/which-robot-did-i-authenticate.md)**
 
 The public browser demo uses the released RIP SDK to simulate three discovery candidates, an isolated authentication session, hostile scenarios, an optional physical-binding profile, and the resulting payloads. Runs use temporary in-memory data and are not saved.
@@ -43,7 +45,8 @@ sequenceDiagram
 - `spec/`: experimental protocol specification;
 - `src/`: transport-independent TypeScript reference SDK;
 - `test/`: positive, tampering, expiry, unknown-trust, and replay tests;
-- `examples/`: a two-endpoint offline example;
+- `examples/`: basic, multi-candidate physical-binding, and domain-attribute examples;
+- `test-vectors/`: fixed messages and expected results for compatibility checks;
 - `docs/licensing.md`: plain-language rights summary.
 
 The core protocol authenticates an endpoint. Optional profiles can add domain-specific evidence without making one sensor method mandatory. [`RIP Physical Binding Profile v0.1`](spec/physical-binding-profile-v0.1.md) demonstrates how a signed session response can be correlated with a verifier-local camera, ranging, direction, acoustic, or multi-modal observation.
@@ -62,9 +65,10 @@ Requirements: Node.js 22 or later.
 
 ```bash
 npm install
-npm test
 npm run example
 ```
+
+Start with the [10-minute Quickstart](QUICKSTART.md). After the first successful run, choose either the multi-candidate physical-binding example or the domain-attribute example; neither is required to understand the core exchange.
 
 The current alpha uses JSON and Ed25519 to exercise the data model. Those choices are an implementation profile, not a final wire-format commitment. BLE pairing is not required and BLE identity is not treated as robot identity.
 
@@ -90,5 +94,7 @@ The license provides no warranty, liability commitment, certification, endorseme
 ## Contributing and security
 
 Contributions are welcome under the same Apache-2.0 license and use Developer Certificate of Origin sign-off. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Have a scenario rather than a code change? [Describe the interaction in GitHub Discussions](https://github.com/ryo-stst/robot-identity-protocol/discussions/new?category=ideas). Keep operational secrets and personal data out of public posts.
 
 Please do not file public issues for suspected vulnerabilities. Follow [SECURITY.md](SECURITY.md).

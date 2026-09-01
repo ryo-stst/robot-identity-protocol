@@ -10,7 +10,7 @@ Thank you for helping build interoperable, transport-independent robot authentic
 - Add tests for positive and negative behavior.
 - Do not include confidential, personal, export-controlled, or third-party material you cannot license.
 
-For substantial protocol changes, open an issue before implementation so the compatibility and security impact can be discussed.
+For an open-ended robot interaction or adoption idea, start in [GitHub Discussions](https://github.com/ryo-stst/robot-identity-protocol/discussions/new?category=ideas). Use an issue for a concrete defect or scoped protocol change. For substantial protocol changes, open an issue before implementation so the compatibility and security impact can be discussed.
 
 ## Developer Certificate of Origin
 

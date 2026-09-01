@@ -1,6 +1,6 @@
 {
   "name": "@robot-identity-protocol/sdk",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "description": "Experimental Robot Identity Protocol reference SDK",
   "type": "module",
   "sideEffects": false,
@@ -18,7 +18,10 @@
   },
   "files": [
     "dist/src",
+    "dist/examples",
     "spec",
+    "test-vectors",
+    "QUICKSTART.md",
     "docs/licensing.md",
     "README.md",
     "LICENSE",
@@ -35,7 +38,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test dist/test/*.test.js",
-    "example": "npm run build && node dist/examples/two-robot.js",
+    "example": "npm run example:basic",
+    "example:basic": "npm run build && node dist/examples/two-robot.js",
+    "example:field": "npm run build && node dist/examples/multi-candidate-physical-binding.js",
+    "example:attribute": "npm run build && node dist/examples/domain-attribute.js",
     "prepack": "npm run build",
     "check": "npm test"
   },
