@@ -1,5 +1,7 @@
 # RIP Physical Binding Profile v0.1
 
+> Historical simulation. Its public-input hash is not a secret-based physical challenge. Use the separate [0.2 optical experiment](edhoc-baseline-v0.2.md) for current exploration; neither establishes anti-relay or unique-body proof.
+
 Status: **Experimental optional profile**. This is not a production sensor-security claim or a mandatory part of Robot Identity Protocol (RIP).
 
 ## Purpose

@@ -10,7 +10,7 @@ import {
   generateIdentityKeyPair,
   verifyAuthenticationPresentation,
   type AttributeEnvelope,
-} from "../src/index.js";
+} from "../src/legacy.js";
 
 // This schema belongs to the adopting logistics domain, not to RIP core.
 const capabilitySchema = "https://example.com/schemas/robot-handoff-capability/v1";

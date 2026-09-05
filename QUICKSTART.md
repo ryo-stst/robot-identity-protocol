@@ -1,62 +1,65 @@
-# RIP Quickstart
+# Your first RIP exchange
 
-Run one local endpoint-authentication exchange in about 10 minutes. Nothing is sent to a hosted service.
+Start with two peers. No robot, account, cloud registry or radio is needed.
+Use Node.js 22 or later. Internet is needed to download dependencies, not to run the exchange.
 
-## 1. Run the smallest example
+## 1. Install and run
 
-Requirements: Node.js 22 or later and Git.
-
-```bash
+```sh
 git clone https://github.com/ryo-stst/robot-identity-protocol.git
 cd robot-identity-protocol
-npm install
+npm ci
 npm run example
 ```
 
-Look for these three results:
+Expected: `status: "verified"`, two different `peerKeyId` values and the same `exchangeId`.
+Each report says its local peer verified the other peer's credential and key proof.
+It does **not** identify a physical robot, check live revocation or allow an action.
+The example controls both peers and a demonstration issuer; this is not an independent-implementation test.
 
-```json
-{
-  "authentication": "verified",
-  "physicalBinding": "endpoint-only",
-  "authorizationDecision": "outside-this-protocol"
-}
+## 2. See the three messages
+
+```ts
+import {
+  AuthenticationSession, generateIdentityKeyPair, pinnedCredentials,
+} from "@robot-identity-protocol/sdk";
+
+const a = generateIdentityKeyPair();
+const b = generateIdentityKeyPair();
+// Demo bootstrap only. Provision production trust through your own secure process.
+const resolvePeer = pinnedCredentials([a, b].map(peer => ({
+  subject: peer.keyId, publicKey: peer.publicKey,
+})));
+const initiator = new AuthenticationSession({ role: "initiator", identity: a, resolvePeer });
+const responder = new AuthenticationSession({ role: "responder", identity: b, resolvePeer });
+await responder.receive(await initiator.start());       // EDHOC message_1
+await initiator.receive(await responder.respond());     // EDHOC message_2
+await responder.receive(await initiator.respond());     // EDHOC message_3
+console.log(initiator.report(), responder.report());
 ```
 
-- `verified`: the Presenter controlled the expected identity key and the signed session was fresh.
-- `endpoint-only`: the cryptographic endpoint was authenticated; no claim was made about which visible robot body it belongs to.
-- `outside-this-protocol`: RIP returns identity evidence. Another application decides what action, if any, is allowed.
+Both peers use the SDK or another compatible implementation. Initiator/responder are exchange roles, not different kinds of robot.
 
-That is the complete first exercise.
+## 3. Choose just one next experiment
 
-## 2. Choose one next example
+| Learn about | Run |
+| --- | --- |
+| Two processes, each keeping its own private key | `npm run example:processes` |
+| An issuer-signed, subject-bound custom claim | `npm run example:claims` |
+| Multiple candidates and simulated optical correlation | `npm run example:optical` |
+| Success and rejection tests | `npm test` |
 
-You do not need to run both.
+The two-process example uses local IPC, not a radio, and provisions public keys through its trusted harness. Do not copy that bootstrap onto an untrusted transport.
+The optical example uses a session-secret-derived response; its observation is simulated and does not prove anti-relay protection.
 
-### Multiple nearby candidates and simulated physical binding
+## Use the packaged SDK
 
-```bash
-npm run example:field
+```sh
+npm install https://github.com/ryo-stst/robot-identity-protocol/releases/download/v0.2.0-alpha.1/robot-identity-protocol-sdk-0.2.0-alpha.1.tgz
 ```
 
-This keeps three advertisements separate, selects `Presenter B2`, authenticates only that endpoint, and correlates it with verifier-local `camera-track-02`. The sensor event is simulated and is not a production body-binding claim.
+Distribution is through GitHub Releases; npm registry publication is not implied.
 
-### A domain-specific attribute
+Next: [baseline profile](spec/edhoc-baseline-v0.2.md), [integration and extensions](docs/integration.md), [browser walkthrough](https://robot-identity-field-lab.sato-kit111.chatgpt.site/) or [security limits](SECURITY.md).
 
-```bash
-npm run example:attribute
-```
-
-This attaches a logistics-owned Attribute Envelope with values such as `nominalPayloadKg`. RIP carries and signs the envelope without defining its business meaning. Issuer-proof verification is still unresolved in this alpha.
-
-## 3. Add the SDK to another Node.js project
-
-The alpha is distributed as a GitHub release asset rather than through the npm registry:
-
-```bash
-npm install https://github.com/ryo-stst/robot-identity-protocol/releases/download/v0.1.0-alpha.4/robot-identity-protocol-sdk-0.1.0-alpha.4.tgz
-```
-
-Both roles use the same package: the Presenter creates advertisements and signed presentations; the Verifier creates challenges and verifies reports.
-
-When you need exact payloads, use [`test-vectors/one-way-success.json`](test-vectors/one-way-success.json). For protocol details, continue to the [core specification](spec/authentication-protocol-v0.1.md) or the [optional physical-binding profile](spec/physical-binding-profile-v0.1.md).
+Upgrading from alpha.4? Default exports and example now use EDHOC. Old JSON teaching APIs are available through `@robot-identity-protocol/sdk/legacy`, with no automatic fallback.

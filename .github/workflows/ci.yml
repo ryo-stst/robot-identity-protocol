@@ -23,3 +23,5 @@ jobs:
         run: npm ci
       - name: Build and test
         run: npm test
+      - name: Verify the offline two-process example
+        run: npm run example:processes

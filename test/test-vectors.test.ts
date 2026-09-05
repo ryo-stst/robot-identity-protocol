@@ -12,7 +12,7 @@ import {
   type AuthenticationPresentation,
   type DiscoveryAdvertisement,
   type TrustedKeySet,
-} from "../src/index.js";
+} from "../src/legacy.js";
 
 type SuccessVector = {
   verificationTime: string;

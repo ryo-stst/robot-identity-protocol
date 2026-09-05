@@ -10,7 +10,7 @@ import {
   createDiscoveryAdvertisement,
   generateIdentityKeyPair,
   verifyAuthenticationPresentation,
-} from "../src/index.js";
+} from "../src/legacy.js";
 
 const warehouseVerifier = generateIdentityKeyPair();
 const deliveryRobot = generateIdentityKeyPair();

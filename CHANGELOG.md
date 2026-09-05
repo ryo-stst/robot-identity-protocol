@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0-alpha.1 — 2026-09-05
+
+- Introduce the three-message EDHOC mutual-authentication baseline.
+- Breaking: default export/example use the baseline; historical JSON teaching APIs move to `/legacy`, without automatic fallback.
+- Add issuer-signed COSE statements, schema-scoped trust, subject/time checks and an offline status-snapshot helper.
+- Add bounded state/message handling, negative case catalog and two-process offline example.
+- New optical experiment derives a response from a session secret and reports correlation, not body or anti-relay proof.
+- Document quickstart, integration choices and remaining interoperability/production gates.
+
+
 All notable changes to this project will be documented here.
 
 ## 0.1.0-alpha.4 - 2026-09-01

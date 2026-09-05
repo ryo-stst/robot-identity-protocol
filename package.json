@@ -1,6 +1,6 @@
 {
   "name": "@robot-identity-protocol/sdk",
-  "version": "0.1.0-alpha.4",
+  "version": "0.2.0-alpha.1",
   "description": "Experimental Robot Identity Protocol reference SDK",
   "type": "module",
   "sideEffects": false,
@@ -26,10 +26,25 @@
     "README.md",
     "LICENSE",
     "NOTICE",
+    "THIRD_PARTY.md",
+    "docs/integration.md",
+    "docs/readiness.md",
     "SECURITY.md",
     "TRADEMARKS.md"
   ],
   "exports": {
+    "./legacy": {
+      "types": "./dist/src/legacy.d.ts",
+      "import": "./dist/src/legacy.js"
+    },
+    "./demo": {
+      "types": "./dist/src/baseline/demo.d.ts",
+      "import": "./dist/src/baseline/demo.js"
+    },
+    "./baseline": {
+      "types": "./dist/src/baseline/index.d.ts",
+      "import": "./dist/src/baseline/index.js"
+    },
     ".": {
       "types": "./dist/src/index.d.ts",
       "import": "./dist/src/index.js"
@@ -38,7 +53,11 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test dist/test/*.test.js",
-    "example": "npm run example:basic",
+    "example": "npm run example:edhoc",
+    "example:edhoc": "npm run build && node dist/examples/edhoc-basic.js",
+    "example:processes": "npm run build && node dist/examples/two-process.js",
+    "example:claims": "npm run build && node dist/examples/edhoc-basic.js --attribute",
+    "example:optical": "npm run build && node dist/examples/edhoc-basic.js --multiple --optical",
     "example:basic": "npm run build && node dist/examples/two-robot.js",
     "example:field": "npm run build && node dist/examples/multi-candidate-physical-binding.js",
     "example:attribute": "npm run build && node dist/examples/domain-attribute.js",
@@ -48,5 +67,10 @@
   "devDependencies": {
     "@types/node": "22.20.1",
     "typescript": "7.0.2"
+  },
+  "dependencies": {
+    "@auth0/cose": "1.0.2",
+    "cbor": "9.0.2",
+    "edhoc": "2.1.1"
   }
 }

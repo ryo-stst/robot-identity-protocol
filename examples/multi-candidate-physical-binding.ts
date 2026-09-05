@@ -16,7 +16,7 @@ import {
   physicalBindingChallengeHash,
   verifyAuthenticationPresentation,
   verifyPhysicalBindingObservation,
-} from "../src/index.js";
+} from "../src/legacy.js";
 
 const now = new Date();
 

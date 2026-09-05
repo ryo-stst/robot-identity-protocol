@@ -14,7 +14,7 @@ import {
   generateIdentityKeyPair,
   verifyAuthenticationPresentation,
   type AuthenticationPresentation,
-} from "../src/index.js";
+} from "../src/legacy.js";
 
 const start = new Date("2026-08-08T00:00:00.000Z");
 const verifyAt = new Date("2026-08-08T00:00:01.000Z");

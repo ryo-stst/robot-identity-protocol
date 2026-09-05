@@ -1,0 +1,31 @@
+{
+  "profile": "rip-edhoc-ccs-0.2",
+  "kind": "executable-scenarios-not-rfc-byte-vectors",
+  "cases": [
+    {
+      "scenario": "success",
+      "status": "verified",
+      "failure": null
+    },
+    {
+      "scenario": "tamper",
+      "status": "rejected",
+      "failure": "AUTHENTICATION_FAILED"
+    },
+    {
+      "scenario": "replay",
+      "status": "rejected",
+      "failure": "UNEXPECTED_MESSAGE_OR_REPLAY"
+    },
+    {
+      "scenario": "unknown-issuer",
+      "status": "rejected",
+      "failure": "ISSUER_NOT_TRUSTED_FOR_SCHEMA"
+    },
+    {
+      "scenario": "expired",
+      "status": "rejected",
+      "failure": "SESSION_EXPIRED"
+    }
+  ]
+}

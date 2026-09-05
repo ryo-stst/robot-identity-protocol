@@ -1,5 +1,7 @@
 # Robot Identity Protocol (RIP) — Authentication Core v0.1
 
+> Legacy teaching experiment, not the current integration baseline. New integrations start with [EDHOC baseline 0.2](edhoc-baseline-v0.2.md). The formats are not wire-compatible.
+
 Status: **Experimental design draft**. This document is not an interoperability commitment, production security claim, certification, or recognized standard.
 
 ## 1. Objective
