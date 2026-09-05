@@ -25,7 +25,10 @@ export function keyIdFor(publicKey: JsonWebKey): string {
 
 export function generateIdentityKeyPair(): IdentityKeyPair {
   const pair = generateKeyPairSync("ed25519");
-  const publicKey = pair.publicKey.export({ format: "jwk" }) as JsonWebKey;
+  const exported = pair.publicKey.export({ format: "jwk" }) as JsonWebKey;
+  // Some Node-compatible runtimes also export alg/key_ops/ext metadata. The
+  // profile's identity and fingerprint must use only its three public fields.
+  const publicKey: JsonWebKey = { kty: exported.kty!, crv: exported.crv!, x: exported.x! };
   return {
     keyId: keyIdFor(publicKey),
     publicKey,

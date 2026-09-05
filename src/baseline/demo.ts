@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Demonstration fixture: all actors and issuers are ephemeral and controlled by this process.
 import { randomBytes } from "node:crypto";
+import type { EdhocCryptoManager } from "edhoc";
 import { generateIdentityKeyPair } from "../crypto.js";
 import { AuthenticationSession, BASELINE_PROFILE, correlateOpticalObservation, issuerCredentials, RipError } from "./edhoc.js";
 import { IDENTITY_SCHEMA, issueStatement, verifyStatement, type StatementResult } from "./claims.js";
@@ -9,6 +10,8 @@ export type DemoScenario = "success" | "tamper" | "replay" | "unknown-issuer" | 
 export const PAYLOAD_SCHEMA = "https://example.com/robot/payload/v1";
 export async function runBaselineDemo(options: {
   scenario?: DemoScenario; target?: number; multiple?: boolean; attribute?: boolean; optical?: boolean;
+  /** Host-supplied adapter; does not change the fixed EDHOC method or cipher suite. */
+  crypto?: EdhocCryptoManager;
 } = {}) {
   const scenario = options.scenario ?? "success";
   const now = Date.now();
@@ -25,8 +28,9 @@ export async function runBaselineDemo(options: {
     schema: IDENTITY_SCHEMA, subject: peer.keyId, issuedAt: now, expiresAt: now + 300_000, content: { publicKey: peer.publicKey },
   }));
   const resolvePeer = issuerCredentials({ lookup: async id => bundle.get(id), issuers: scenario === "unknown-issuer" ? [] : [trust], now: () => time });
-  const initiator = new AuthenticationSession({ role: "initiator", identity: a, resolvePeer, now: () => time });
-  const responder = new AuthenticationSession({ role: "responder", identity: b, resolvePeer, now: () => time });
+  const adapter = options.crypto ? { crypto: options.crypto } : {};
+  const initiator = new AuthenticationSession({ role: "initiator", identity: a, resolvePeer, now: () => time, ...adapter });
+  const responder = new AuthenticationSession({ role: "responder", identity: b, resolvePeer, now: () => time, ...adapter });
   const steps: Array<{ title: string; direction: string; result: string; explanation: string; core: Record<string, unknown>; extension: Record<string, unknown> | null }> = [{
     title: "Choose a candidate", direction: "Local discovery → A", result: "observed",
     explanation: "These are simulated discovery handles, not authenticated names or physical positions. Only the selected candidate receives this handshake.",
@@ -56,7 +60,9 @@ export async function runBaselineDemo(options: {
     await responder.receive(m3); current!.result = `A verified by ${label}`;
   } catch (error) {
     failure = error instanceof RipError ? error.code : "AUTHENTICATION_FAILED";
-    if (current) current.result = `rejected: ${failure}`;
+    if (current && !current.result.includes("verified") && !current.result.includes("accepted")) current.result = `rejected: ${failure}`;
+    else steps.push({ title: "Exchange could not continue", direction: "Local processing", result: `rejected: ${failure}`,
+      explanation: "The next message could not be prepared. Earlier verification results do not establish a completed exchange.", core: {}, extension: null });
   }
   const reports = failure ? null : { a: initiator.report(), b: responder.report() };
   let attribute: StatementResult | null = null;

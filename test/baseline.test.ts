@@ -3,9 +3,24 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { randomBytes, createPublicKey, verify } from "node:crypto";
 import cbor from "cbor";
+import { DefaultEdhocCryptoManager } from "edhoc";
 import { readFileSync } from "node:fs";
 import { AuthenticationSession, pinnedCredentials, generateIdentityKeyPair, issueStatement, verifyStatement, verifyStatusSnapshot, STATUS_SCHEMA, correlateOpticalObservation } from "../src/baseline/index.js";
 import { runBaselineDemo } from "../src/baseline/demo.js";
+
+test("generated identities use the same minimal JWK profile in every runtime", () => {
+  assert.deepEqual(Object.keys(generateIdentityKeyPair().publicKey).sort(), ["crv", "kty", "x"]);
+});
+
+test("demo attributes a message preparation failure to a separate step", async () => {
+  class UnavailableCipher extends DefaultEdhocCryptoManager {
+    override async encrypt(): Promise<Buffer> { throw new Error("unavailable cipher"); }
+  }
+  const result = await runBaselineDemo({ crypto: new UnavailableCipher() });
+  assert.equal(result.status, "rejected");
+  assert.equal(result.steps[2]!.result, "peer verified by A");
+  assert.equal(result.steps.at(-1)!.title, "Exchange could not continue");
+});
 
 test("machine-readable conformance scenario catalog", async () => {
   const catalog = JSON.parse(readFileSync(new URL("../../test-vectors/baseline-cases.json", import.meta.url), "utf8"));

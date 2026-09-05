@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-alpha.1 — 2026-09-05
+## 0.2.0-alpha.1 — 2026-09-06
 
 - Introduce the three-message EDHOC mutual-authentication baseline.
 - Breaking: default export/example use the baseline; historical JSON teaching APIs move to `/legacy`, without automatic fallback.
@@ -8,6 +8,7 @@
 - Add bounded state/message handling, negative case catalog and two-process offline example.
 - New optical experiment derives a response from a session secret and reports correlation, not body or anti-relay proof.
 - Document quickstart, integration choices and remaining interoperability/production gates.
+- Normalize generated public JWKs across Node-compatible runtimes; allow a host crypto adapter in the demo without changing its cipher suite.
 
 
 All notable changes to this project will be documented here.
