@@ -70,7 +70,7 @@
   },
   "dependencies": {
     "@auth0/cose": "1.0.2",
-    "cbor": "9.0.2",
+    "cbor": "10.0.12",
     "edhoc": "2.1.1"
   }
 }
