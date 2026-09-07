@@ -6,6 +6,9 @@
 - Role: friendly editorial cover, not technical evidence or a screenshot. Portrait cards are a visual metaphor for introductions, not an authentication mechanism.
 - Alt text: Four friendly robots with different shapes greet each other in a sunny neighborhood.
 - DEV uses this asset as the cover image; the GitHub article embeds it once at the top. Avoid duplicating the cover inside the DEV body.
+- Published update: [existing DEV article](https://dev.to/ryo-stst/which-robot-did-i-authenticate-simulating-physical-binding-with-robot-identity-protocol-rip-4bfc), 2026-09-08. Original title, URL, tags, author, and GitHub canonical URL preserved. Current baseline text and all six scenarios checked on the published page.
+- DEV cover configuration: standard `cover_image` front matter points to `https://github.com/ryo-stst/robot-identity-protocol/raw/refs/heads/main/docs/articles/assets/robot-introductions-cover-v1.png`. Keep this versioned asset available. The published 1000:420 rendering was visually checked.
+- AI disclosure: article generation disclosed through DEV's "Fully Autonomous" option; the body separately identifies the cover as an AI-generated conceptual illustration.
 
 ## Final generation prompt
 
