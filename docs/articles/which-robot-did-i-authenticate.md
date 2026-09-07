@@ -1,8 +1,8 @@
 # Which Robot Did I Authenticate? Simulating Physical Binding with Robot Identity Protocol (RIP)
 
-![Robot Identity Protocol and Field Lab illustration](https://robot-identity-field-lab.sato-kit111.chatgpt.site/og.png)
+![Four friendly robots with different shapes greet each other in a sunny neighborhood](assets/robot-introductions-cover-v1.png)
 
-*Updated September 7, 2026 for SDK `0.2.0-alpha.1` and the current Field Lab. The authentication baseline now uses EDHOC; the older v0.1 JSON exchange is legacy, with no automatic fallback. The illustration above is not a screenshot of the current interface.*
+*Updated September 8, 2026 for SDK `0.2.0-alpha.1` and the current Field Lab. The authentication baseline now uses EDHOC; the older v0.1 JSON exchange is legacy, with no automatic fallback. The AI-generated cover is a conceptual illustration, not a screenshot or a claim that appearance proves identity.*
 
 Robots are moving out of fenced, single-vendor environments.
 
