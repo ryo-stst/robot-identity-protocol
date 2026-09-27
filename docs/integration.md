@@ -38,6 +38,12 @@ Examples, not mandatory vocabularies:
 
 Each schema specifies units, fields, who may assert them, freshness and privacy. Domain policy decides what action to take; a signature neither measures capacity nor permits an operation.
 
+For a **local-test example in v0.2.0-alpha.2** that requests specific schemas,
+handles different domains and runs explicit content validators, see
+[try two different domains](domain-exchange.md). This is optional; finish the basic
+authentication example first. Its request/response envelopes have no confidentiality
+or authentication and are not suitable for real-peer transport yet.
+
 ## Optional physical correlation
 
 `npm run example:optical` uses a session-secret-derived response and simulated sensor tracks. It does not implement a driver, time-of-flight proof or anti-relay system. Add a sensor method as its own versioned profile with negative tests, not new core handshake messages.

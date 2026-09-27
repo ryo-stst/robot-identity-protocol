@@ -5,6 +5,7 @@ import type { EdhocCryptoManager } from "edhoc";
 import { generateIdentityKeyPair } from "../crypto.js";
 import { AuthenticationSession, BASELINE_PROFILE, correlateOpticalObservation, issuerCredentials, RipError } from "./edhoc.js";
 import { IDENTITY_SCHEMA, issueStatement, verifyStatement, type StatementResult } from "./claims.js";
+export { runDomainDemo } from "./domain-demo.js";
 
 export type DemoScenario = "success" | "tamper" | "replay" | "unknown-issuer" | "expired";
 export const PAYLOAD_SCHEMA = "https://example.com/robot/payload/v1";
@@ -84,7 +85,7 @@ export async function runBaselineDemo(options: {
       core: { exchangeId: reports.a.exchangeId }, extension: { ...optical, simulated: true, challengeHex: challenge.toString("hex"), matchedResponse: true } });
   }
   return {
-    profile: BASELINE_PROFILE, sdkVersion: "0.2.0-alpha.1", scenario, target, label,
+    profile: BASELINE_PROFILE, sdkVersion: "0.2.0-alpha.2", scenario, target, label,
     environment: "single-process simulation; real cryptography; no radio or physical proof",
     status: reports ? "verified" : "rejected", failure, reports, attribute, optical, steps,
     candidates: candidates.map((peer, index) => ({ label: `B${index + 1}`, selected: target === index, identity: reports && index === target ? "verified" : "not-verified", keyId: reports && index === target ? peer.keyId : null })),

@@ -25,3 +25,7 @@ jobs:
         run: npm test
       - name: Verify the offline two-process example
         run: npm run example:processes
+      - name: Verify the local cross-domain example
+        run: npm run example:domains
+      - name: Verify the bakery article fixture
+        run: npm run example:bakery

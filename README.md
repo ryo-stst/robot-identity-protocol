@@ -34,6 +34,14 @@ This is a **reference SDK and draft application profile**, not a new IETF standa
 See the [baseline specification](spec/edhoc-baseline-v0.2.md), [integration guide](docs/integration.md) and [readiness gates](docs/readiness.md).
 BLE, Wi-Fi, UWB, ROS 2, OSCORE application traffic, hardware-backed keys and independent C/TS interoperability are **not yet implemented or verified by this SDK**.
 
+Optional next experiment in **v0.2.0-alpha.2**:
+[try two different domains](docs/domain-exchange.md). It keeps core authentication
+unchanged and makes unknown information explicit, with local provider/validator
+hooks. Its application envelopes are **not encrypted or authenticated**; use only
+the synthetic local example. The Field Lab's optional cross-domain walkthrough runs
+the same fixture inside one server process, not between external robots.
+[Identifier/disclosure limits](spec/identifier-disclosure-policy-v0.1.md).
+
 ## Compatibility, rights and governance
 
 The v0.1 JSON-signature experiment is a [legacy teaching profile](spec/authentication-protocol-v0.1.md), available from the explicit `/legacy` export. It is not wire-compatible with EDHOC and is not an automatic fallback.

@@ -1,6 +1,6 @@
 {
   "name": "@robot-identity-protocol/sdk",
-  "version": "0.2.0-alpha.1",
+  "version": "0.2.0-alpha.2",
   "description": "Experimental Robot Identity Protocol reference SDK",
   "type": "module",
   "sideEffects": false,
@@ -29,6 +29,10 @@
     "THIRD_PARTY.md",
     "docs/integration.md",
     "docs/readiness.md",
+    "docs/domain-exchange.md",
+    "docs/privacy-and-identifiers.md",
+    "docs/articles/examples/bakery-2035.mjs",
+    "examples/cross-domain.ts",
     "SECURITY.md",
     "TRADEMARKS.md"
   ],
@@ -57,6 +61,8 @@
     "example:edhoc": "npm run build && node dist/examples/edhoc-basic.js",
     "example:processes": "npm run build && node dist/examples/two-process.js",
     "example:claims": "npm run build && node dist/examples/edhoc-basic.js --attribute",
+    "example:domains": "npm run build && node dist/examples/cross-domain.js",
+    "example:bakery": "npm run build && node docs/articles/examples/bakery-2035.mjs",
     "example:optical": "npm run build && node dist/examples/edhoc-basic.js --multiple --optical",
     "example:basic": "npm run build && node dist/examples/two-robot.js",
     "example:field": "npm run build && node dist/examples/multi-candidate-physical-binding.js",

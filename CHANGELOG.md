@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0-alpha.2 — 2026-09-27
+
+- Add a local-test-only optional domain-exchange contract after unchanged EDHOC authentication.
+- Add bounded CBOR request/response framing, exact versioned schema matching, explicit provider/validator hooks and separate verified/failed/unresolved/unsupported/unavailable results.
+- Keep unauthenticated envelope statuses visibly separate from signed statement checks; no encrypted application adapter or privacy guarantee is introduced.
+- Add `example:domains`, negative tests and regressions documenting stable-key linkage and EDHOC responder identity-protection limits.
+- Record identifier/disclosure decisions and the remaining protected-channel/scoped-credential gates.
+- Export the synthetic `runDomainDemo` fixture from `/demo` for Field Lab and CLI reuse; publish the runnable bakery article fixture.
+
 ## 0.2.0-alpha.1 — 2026-09-06
 
 - Introduce the three-message EDHOC mutual-authentication baseline.
