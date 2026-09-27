@@ -54,6 +54,13 @@ Verify against the authenticated subject, exact requested schema and an issuer l
 
 These objects are signed, **not encrypted**. Transfer and disclosure selection are separate from the handshake. They are not put into unauthenticated EAD. Confidential application traffic needs an independently specified OSCORE or other authenticated-encryption profile; not implemented here.
 
+The [optional domain-exchange contract](domain-exchange-v0.1.md), in SDK `v0.2.0-alpha.2`, adds
+bounded local request/response framing and explicit domain validators after
+authentication. It does not alter these three EDHOC messages or allow EAD. Unknown
+optional schemas can yield `unsupported` in that separate layer; unknown EAD in
+the core still fails. Its unsigned envelopes are local-test-only, not an encrypted
+application profile. See the [identifier/disclosure policy](identifier-disclosure-policy-v0.1.md).
+
 ## Offline status and rotation
 
 `verifyStatusSnapshot`: statement schema `urn:rip:credential-status:0.2`, subject = credential statement ID, content = `{status: "good" | "revoked"}`, trusted status issuer supplied locally. Invalid, future, expired, missing or too-old knowledge yields `unknown`, never good. `asOf` is signed issue time. Integrators must associate the status authority with the credential issuer and securely refresh bundles. Status is not automatically folded into authentication.

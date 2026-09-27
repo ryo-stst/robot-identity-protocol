@@ -46,6 +46,8 @@ Both peers use the SDK or another compatible implementation. Initiator/responder
 | --- | --- |
 | Two processes, each keeping its own private key | `npm run example:processes` |
 | An issuer-signed, subject-bound custom claim | `npm run example:claims` |
+| Different domains: unsupported versus understood information | `npm run example:domains` |
+| Three robots presenting cargo statements to a bakery | `npm run example:bakery` |
 | Multiple candidates and simulated optical correlation | `npm run example:optical` |
 | Success and rejection tests | `npm test` |
 
@@ -55,7 +57,7 @@ The optical example uses a session-secret-derived response; its observation is s
 ## Use the packaged SDK
 
 ```sh
-npm install https://github.com/ryo-stst/robot-identity-protocol/releases/download/v0.2.0-alpha.1/robot-identity-protocol-sdk-0.2.0-alpha.1.tgz
+npm install https://github.com/ryo-stst/robot-identity-protocol/releases/download/v0.2.0-alpha.2/robot-identity-protocol-sdk-0.2.0-alpha.2.tgz
 ```
 
 Distribution is through GitHub Releases; npm registry publication is not implied.

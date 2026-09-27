@@ -2,7 +2,7 @@
 
 ![Four friendly robots with different shapes greet each other in a sunny neighborhood](assets/robot-introductions-cover-v1.png)
 
-*Updated September 8, 2026 for SDK `0.2.0-alpha.1` and the current Field Lab. The authentication baseline now uses EDHOC; the older v0.1 JSON exchange is legacy, with no automatic fallback. The AI-generated cover is a conceptual illustration, not a screenshot or a claim that appearance proves identity.*
+*Updated September 27, 2026 for SDK `0.2.0-alpha.2` and the current Field Lab. The authentication baseline uses EDHOC; the older v0.1 JSON exchange is legacy, with no automatic fallback. The AI-generated cover is a conceptual illustration, not a screenshot or a claim that appearance proves identity.*
 
 Robots are moving out of fenced, single-vendor environments.
 
@@ -116,6 +116,17 @@ This is only the content inside a signed statement, not an authentication messag
 The verifier checks the signature, whether the issuer is locally trusted for that exact schema, the validity interval, and whether the statement's subject matches the **authenticated peer key**. Trusting an issuer for identity does not automatically trust it to certify payload capacity.
 
 The domain still defines units, meaning, freshness requirements, and which issuers are appropriate. An 80 kg *nominal capacity* assertion is not a live measurement of remaining capacity. A signature authenticates the issuer's assertion; it does not prove that the physical claim is true.
+
+In `v0.2.0-alpha.2`, an optional [cross-domain experiment](../domain-exchange.md)
+shows a delivery endpoint meeting an inspection endpoint. Both authenticate;
+unknown domain requests are reported as unsupported. Explicitly installing the
+other domain's validator and issuer trust makes its statement verifiable without
+changing the core handshake. The Field Lab runs this with synthetic peers inside
+one server process. The extension envelopes themselves remain unsigned and
+unencrypted: this is not a production robot-to-robot application channel.
+
+For a more story-led example, [Three Robots Arrive at a Bakery](three-robots-at-a-bakery.md)
+imagines a morning in 2035, then separates that fiction from a runnable experiment.
 
 These statements are separate from the EDHOC handshake and bound to its authenticated subject, not automatically to one specific session or a fresh sensor reading. They are signed, **not encrypted**. Confidential transfer and selective disclosure need separate application design; the current SDK does not implement them.
 
@@ -251,6 +262,7 @@ Internet is needed to download the repository and dependencies, not to run the l
 Choose just one next command:
 
 - `npm run example:claims` — verify an issuer-signed domain statement.
+- `npm run example:domains` — compare unsupported and explicitly understood domain information.
 - `npm run example:optical` — multiple candidates and simulated optical correlation.
 - `npm run example:processes` — two local Node processes, each keeping its own private key. The trusted demo harness provisions public keys; this is IPC, not a radio adapter or independent implementation.
 

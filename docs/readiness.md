@@ -1,13 +1,16 @@
 # Readiness and adoption gates
 
-Updated 2026-09-05. Experimental baseline, not production assurance.
+Updated 2026-09-27. Experimental baseline, not production assurance. Domain exchange
+is included in `v0.2.0-alpha.2`; the Field Lab runs it with synthetic peers in one
+trusted server process. Real-peer application transport remains unprotected by this helper.
 
 | Area | Implemented | Remaining gate |
 | --- | --- | --- |
 | Authentication | EDHOC integration, fixed method/suite/CCS, local mutual verification | RFC byte-vector coverage; independent C ↔ TypeScript interop |
 | Transport | Byte interface, two-process offline IPC | One real bearer; loss, fragmentation, DoS, concurrency tests |
 | Trust | Local pins, issuer-signed identity lookup, schema scope | Secure provisioning, persistent rotation/recovery |
-| Attributes | COSE, subject/schema/issuer/time checks | Domain validators, confidential exchange |
+| Attributes | COSE checks; bounded local request/response with exact schemas, explicit provider/validator callbacks and separate unsupported/unavailable results | Domain-specific production validators; authenticated and confidential application binding |
+| Identifier privacy | No mandatory physical serial; local regressions for repeated-key linkage and active responder-ID probing | Scoped credential issuance/audience enforcement/rotation; radio and collusion threat testing |
 | Offline status | Signed fresh/stale/revoked snapshot helper | Distribution and deployment-policy integration |
 | Physical evidence | Secret-derived optical response, simulated correlation/ambiguity | Real sensor timing and relay experiments |
 | SDK | Node.js reference, bounded frames/state | Embedded implementation, hardware key handles, independent runtime verification |
