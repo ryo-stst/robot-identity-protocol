@@ -71,7 +71,7 @@
     "check": "npm test"
   },
   "devDependencies": {
-    "@types/node": "22.20.1",
+    "@types/node": "26.6.4",
     "typescript": "7.0.2"
   },
   "dependencies": {
